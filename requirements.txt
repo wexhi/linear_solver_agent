@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+numpy
+langgraph
+langchain_anthropic
+langchain_community
+langchain_openai
