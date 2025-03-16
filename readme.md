@@ -10,7 +10,16 @@ A agent for solving linear equations that uses Jacobi, Gauss-Seidel method and S
 # 🚀 Quickstart
 This guide helps you set up and run the project quickly using Docker Compose.
 No manual dependency installation—just follow these simple steps!
-## 1️⃣ Configure Your API Keys
+
+## 1️⃣ Clone This Repository
+
+Download the project from GitHub:
+```bash
+git clone https://github.com/wexhi/linear_solver_agent.git
+cd linear_solver_agent
+```
+
+## 2️⃣ Configure Your API Keys
 
 You need to get API keys from [Dashscope](https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key?spm=a2c4g.11186623.0.0.74b04823ga7w7T) and [Langsmith](https://docs.smith.langchain.com/administration/how_to_guides/organization_management/create_account_api_key) to run the project.
 
@@ -29,14 +38,6 @@ DASHSCOPE_API_KEY=your_dashscope_key # Aliyun Dashscope API key
 LANGSMITH_API_KEY=your_langsmith_key # Langsmith API key
 OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
 PORT=2025
-```
-
-## 2️⃣ Clone This Repository
-
-Download the project from GitHub:
-```bash
-git clone https://github.com/wexhi/linear_solver_agent.git
-cd linear_solver_agent
 ```
 
 ## 3️⃣Install Docker & Docker Compose

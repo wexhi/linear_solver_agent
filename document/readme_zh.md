@@ -17,7 +17,18 @@
 
 ---
 
-## 1️⃣ 配置 API 密钥
+## 1️⃣ 克隆该仓库
+
+从 GitHub 下载项目：
+```bash
+git clone https://github.com/wexhi/linear_solver_agent.git
+cd linear_solver_agent
+```
+
+
+---
+
+## 2️⃣ 配置 API 密钥
 
 你需要从 [Dashscope](https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key?spm=a2c4g.11186623.0.0.74b04823ga7w7T) 和 [Langsmith](https://docs.smith.langchain.com/administration/how_to_guides/organization_management/create_account_api_key) 获取 API 密钥才能运行该项目。
 
@@ -37,15 +48,6 @@
     OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
     PORT=2025
     ```
----
-
-## 2️⃣ 克隆该仓库
-
-从 GitHub 下载项目：
-```bash
-git clone
-cd linear_solver_agent
-```
 
 ---
 
