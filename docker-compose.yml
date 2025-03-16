@@ -1,0 +1,13 @@
+version: '3'
+name: linear_solver_agent
+services:
+  app:
+    build: .
+    ports:
+      - "2024:2024" # 映射 API 端口
+    volumes:
+      - .:/app # 让本地代码同步到 Docker 内
+    env_file:
+      - .env # 让 Docker 读取用户提供的 .env
+    environment:
+      - OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1 # 预设默认值
