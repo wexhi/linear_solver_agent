@@ -1,4 +1,3 @@
-
 FROM python:3.12.3
 
 # 设置工作目录
@@ -15,4 +14,24 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app
 
 # 确保 Docker 容器里有 API_KEY，否则阻止启动
-CMD ["sh", "-c", "if [ -z \"$DASHSCOPE_API_KEY\" ] || [ -z \"$LANGSMITH_API_KEY\" ]; then echo '❌ 请在 .env 中填写 API Key'; exit 1; fi; langgraph dev --host 0.0.0.0 --port 2024"]
+CMD ["sh", "-c", " \
+    if [ -z \"$DASHSCOPE_API_KEY\" ] || [ -z \"$LANGSMITH_API_KEY\" ]; then \
+    echo '❌ 请在 .env 中填写 API Key'; \
+    exit 1; \
+    fi; \
+    \
+    echo '✅ LangGraph 服务器启动中...';\
+    echo '🌍 访问 LangGraph Studio: https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT'; \
+    \
+    # 启动 LangGraph 服务器 \
+    langgraph dev --host 0.0.0.0 --port $PORT & \
+    \
+    # 等待服务器启动
+    sleep 3; \
+    \
+    # 自动打开浏览器（适用于 Windows、Linux、macOS)\
+    python3 -c \"import webbrowser; webbrowser.open('https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT')\"; \
+    \
+    # 让进程保持运行
+    wait;\
+    "]

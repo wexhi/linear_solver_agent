@@ -1,13 +1,22 @@
-version: '3'
-name: linear_solver_agent
+version: "0.1" #
+name: linear_solver_agent # 显式设置项目名称
 services:
   app:
     build: .
     ports:
-      - "2024:2024" # 映射 API 端口
+      - "${PORT}:${PORT}" # 这里动态使用 PORT
     volumes:
       - .:/app # 让本地代码同步到 Docker 内
     env_file:
       - .env # 让 Docker 读取用户提供的 .env
     environment:
-      - OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1 # 预设默认值
+      - PORT=2025 # 这里可以修改端口
+      - OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
+    command: >
+      sh -c "
+        echo '✅ 访问 LangGraph Studio: https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT';
+        langgraph dev --host 0.0.0.0 --port $PORT &
+        sleep 3;
+        python3 -c \"import webbrowser; webbrowser.open('https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT')\";
+        wait;
+      "
