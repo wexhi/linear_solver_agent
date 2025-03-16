@@ -1,4 +1,5 @@
 # JGSSolver（Jacobi-Gauss-Seidel Solver）
+[English](readme.md) | [简体中文](document/readme_zh.md)
 
 A agent for solving linear equations that uses Jacobi, Gauss-Seidel method and SOR method.Faster than any other LLMs in solving linear equations.It allows you to solve linear equations with natural language without any programming knowledge.
 
