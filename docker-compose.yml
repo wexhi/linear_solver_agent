@@ -1,5 +1,5 @@
-version: "0.1" #
-name: linear_solver_agent # 显式设置项目名称
+version: '3'
+name: linear_solver_agent
 services:
   app:
     build: .
@@ -10,13 +10,15 @@ services:
     env_file:
       - .env # 让 Docker 读取用户提供的 .env
     environment:
-      - PORT=2025 # 这里可以修改端口
+      - PORT=${PORT:-2025}  # 设置默认端口
       - OPENAI_API_BASE=https://dashscope.aliyuncs.com/compatible-mode/v1
-    command: >
-      sh -c "
+    command:
+      - "sh"
+      - "-c"
+      - |
+        if [ -z \"$DASHSCOPE_API_KEY\" ] || [ -z \"$LANGSMITH_API_KEY\" ]; then
+          echo '❌ 请在 .env 中填写 API Key';
+          exit 1;
+        fi;
         echo '✅ 访问 LangGraph Studio: https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT';
-        langgraph dev --host 0.0.0.0 --port $PORT &
-        sleep 3;
-        python3 -c \"import webbrowser; webbrowser.open('https://smith.langchain.com/studio/?baseUrl=http://localhost:$PORT')\";
-        wait;
-      "
+        langgraph dev --host 0.0.0.0 --port $PORT
